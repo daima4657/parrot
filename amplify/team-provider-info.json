@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-parrot-dev-74507-authRole",
+      "UnauthRoleArn": "arn:aws:iam::229440368319:role/amplify-parrot-dev-74507-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::229440368319:role/amplify-parrot-dev-74507-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-parrot-dev-74507-deployment",
+      "UnauthRoleName": "amplify-parrot-dev-74507-unauthRole",
+      "StackName": "amplify-parrot-dev-74507",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:229440368319:stack/amplify-parrot-dev-74507/c61ee670-0463-11ec-81a2-0e9cfcf32e9f",
+      "AmplifyAppId": "d2x555rlmyfvhs"
+    },
+    "categories": {
+      "auth": {
+        "parrotb22472c0": {}
+      }
+    }
+  }
+}
