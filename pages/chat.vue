@@ -114,7 +114,7 @@ export default {
 
           const chat = eventData.value.data.onCreateChat
           if(this.items.some((item) => item.comment === chat.comment)) return
-          this.items = [...this.items, chat] // 新しいデータを追加
+          this.items = [chat , ...this.items] // 新しいデータを追加
         }
       })
     },
