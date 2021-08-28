@@ -19,6 +19,7 @@
         <v-list-item-content>
           <v-list-item-title>{{ item.comment }}</v-list-item-title>
           <v-list-item-subtitle>by: {{ item.owner }}</v-list-item-subtitle>
+          <div class="time">{{ iso8601toDate(item.createdAt) }}</div>
         </v-list-item-content>
       </v-list-item>
     </v-card>
@@ -29,7 +30,11 @@
 
 </template>
 
-
+<style>
+  .time{
+    font-size: 0.6rem;
+  }
+</style>
 
 <script>
 import { API, graphqlOperation } from 'aws-amplify' // Amplifyライブラリを読み込み
@@ -43,6 +48,7 @@ export default {
     return {
       form: {
         comment: '',
+        createdAt: '',
       },
       items: [],
       logoutBtn: false,
@@ -90,6 +96,14 @@ export default {
         query: listChats, // GraphQL Query
       })
       this.items = chatList.data.listChats.items // 読み込みしたデータを一覧に表示
+
+      this.items = this.items.sort(function(a,b){ // 投稿時間の降順でソート
+        if(a.createdAt > b.createdAt){
+          return -1
+        } else {
+          return 1
+        }
+      })
     },
     // ユーザー名を渡すように修正
     subscribe() {
@@ -103,6 +117,12 @@ export default {
           this.items = [...this.items, chat] // 新しいデータを追加
         }
       })
+    },
+    iso8601toDate(time){
+      const ts = Date.parse(time)
+      const dt = new Date(ts)
+      const result = dt.getFullYear() + "年" + ('0'+dt.getMonth()).slice(-2) + "月" + ('0'+dt.getDate()).slice(-2) + "日 " + ('0'+dt.getHours()).slice(-2) + ":" + ('0'+dt.getMinutes()).slice(-2) + ":" + ('0'+dt.getSeconds()).slice(-2)
+      return result
     },
   },
 }
